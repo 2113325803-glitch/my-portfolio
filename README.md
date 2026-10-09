@@ -1,8 +1,31 @@
 # 从零读懂一个「高级感」个人作品集网页
 
-> 导师笔记 · 面向零基础
+> 导师笔记 · 面向零基础 → 进阶
 > 项目：`my-portfolio`（Zed Li Jiale 个人作品集）
 > 涉及文件：`index.html` / `style.css` / `main.js`
+
+---
+
+## 📖 目录
+
+**基础篇**
+- [0. 开篇：先搞懂「三大件」是怎么配合的](#0-开篇先搞懂三大件是怎么配合的)
+- [1. index.html —— 页面的骨架](#1-indexhtml--页面的骨架)
+- [2. style.css —— 让页面变好看的魔法书](#2-stylecss--让页面变好看的魔法书)
+- [3. main.js —— 让页面「活」过来的 4 个功能](#3-mainjs--让页面活过来的-4-个功能)
+- [4. 高级精美网页的 9 大核心技法](#4-高级精美网页的-9-大核心技法可复用到任何项目)
+- [5. 代码体检 —— 发现的问题与优化建议](#5-代码体检--我在你代码里发现的问题与优化建议)
+- [6. 零基础学习路径 & 练习建议](#6-零基础学习路径--练习建议)
+- [7. 速查表（Cheat Sheet）](#7-速查表cheat-sheet)
+
+**进阶篇（老程序员私藏）**
+- [8. 老程序员的「工作流」：工具链 / 快捷键 / DevTools / Git / 部署](#8-老程序员的工作流工具链--快捷键--devtools--git--部署)
+- [9. 老程序员的 CSS 实战技巧（25 条）](#9-老程序员的-css-实战技巧25-条)
+- [10. 老程序员的 JS 实战技巧](#10-老程序员的-js-实战技巧)
+- [11. 调试 · 性能 · 无障碍](#11-调试--性能--无障碍从业余到专业的三道关)
+- [12. 让网页「一眼高级」的 20 个操作手法](#12-让网页一眼高级的-20-个操作手法)
+- [13. 独门配方库（可直接复制粘贴）](#13-独门配方库可直接复制粘贴)
+- [14. 结语](#14-结语)
 
 ---
 
@@ -1051,7 +1074,1471 @@ el.style.setProperty('--x', value + 'px');
 
 ---
 
-## 8. 结语
+## 8. 老程序员的「工作流」：工具链 / 快捷键 / DevTools / Git / 部署
+
+> 前 7 章教你「写出好看的页面」，从这一章开始教你「像职业选手一样干活」。
+> 记住一句话：**业余选手拼天赋，职业选手拼工作流。**
+
+### 8.1 编辑器：VS Code 必装插件
+
+| 插件 | 作用 | 为什么老鸟必装 |
+| --- | --- | --- |
+| **Live Server** | 保存即刷新预览 | 省掉手动 F5，改一像素看一眼 |
+| **Prettier** | 代码自动格式化 | 统一缩进/引号/换行，团队协作不吵架 |
+| **ESLint** | JS 语法与风格检查 | 在运行前就发现低级错误 |
+| **Error Lens** | 错误直接显示在行尾 | 不用把鼠标移到波浪线上 |
+| **Auto Rename Tag** | 改开头标签自动改结尾 | HTML 手写必备，防漏改 |
+| **Path Intellisense** | 路径自动补全 | 图片/文件路径不再写错 |
+| **Color Highlight** | 色值旁边显示色块 | 一眼看出 `#5aa9e6` 是什么颜色 |
+| **GitLens** | 显示每行是谁改的 | 排查「这行谁写的」神器 |
+| **Indent Rainbow** | 缩进彩虹色 | 层级一眼看清，防缩进错乱 |
+
+**一条重要习惯**：在项目根目录建一个 `.vscode/settings.json`，把「保存时自动格式化」打开，从此再也不用管缩进：
+
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2
+}
+```
+
+### 8.2 键盘就是生产力：必背快捷键
+
+**VS Code 篇（Windows）**
+
+| 快捷键 | 作用 | 场景 |
+| --- | --- | --- |
+| `Ctrl + P` | 快速打开文件 | 不想在文件树里点半天 |
+| `Ctrl + Shift + P` | 命令面板 | 「万能入口」，忘了快捷键就搜 |
+| `Ctrl + D` | 选中下一个相同的词（可连按） | 批量改名，比查找替换快 10 倍 |
+| `Ctrl + Shift + L` | 选中**所有**相同的词 | 一次改完全部 |
+| `Alt + 单击` | 多光标 | 同时编辑多个位置 |
+| `Shift + Alt + ↑/↓` | 复制当前行 | 写重复结构 |
+| `Alt + ↑/↓` | 上下移动当前行 | 调整顺序不用剪切粘贴 |
+| `Ctrl + /` | 注释/取消注释 | 快速屏蔽代码 |
+| `Alt + Z` | 自动换行开关 | 看长句代码 |
+| `Ctrl + `` ` `` | 打开内置终端 | 不用切窗口 |
+| `F2` | 重命名符号 | 改名会自动改所有引用 |
+
+**浏览器篇**
+
+| 快捷键 | 作用 |
+| --- | --- |
+| `F12` / `Ctrl + Shift + I` | 打开 DevTools |
+| `Ctrl + Shift + C` | 检查元素（进入选择模式） |
+| `Ctrl + Shift + M` | 切换手机模拟视图 |
+| `Ctrl + Shift + R` | **强制刷新**（忽略缓存）——改 CSS 不生效时先按它 |
+
+### 8.3 Emmet：一行写出整块 HTML
+
+在 `.html` 文件里敲缩写再按 `Tab`，会自动展开。老鸟写 HTML 几乎不用手打标签：
+
+```text
+!                      → 生成完整 HTML5 骨架
+div.card               → <div class="card"></div>
+ul>li*5                → 生成 5 个 li
+a.btn{点击我}           → <a href="" class="btn">点击我</a>
+.wrapper>.item*3       → wrapper 里包 3 个 item
+p*2>lorem              → 生成两段填充文字（做原型超好用）
+div>h3{标题}+p{内容}     → 一次性生成标题+段落
+```
+
+在 CSS 里同样能用：`m10` → `margin: 10px;`，`p20-30` → `padding: 20px 30px;`，`df` → `display: flex;`。
+
+### 8.4 浏览器 DevTools 才是主战场
+
+新手只会 `console.log`，老鸟把 DevTools 当 IDE 用。
+
+**① Elements 面板（改样式）**
+- 右键元素 → **检查**，直接在右侧改 CSS，实时看效果。
+- 勾选 `:hov` → 可以**强制元素进入 `:hover` / `:focus` 状态**，专门调悬停样式（不用手动悬停！）。
+- 看 **Computed（已计算）** 标签，能查到某个属性最终从哪条规则来的——排查「我设了颜色怎么没生效」的唯一正解。
+
+**② 选中元素后，Console 里能用 `$0`**
+```js
+$0                      // 当前在 Elements 里选中的那个元素
+$0.style.background = 'red'   // 直接改它
+$$('.focus-card')       // 等价于 querySelectorAll，返回数组
+$0.getBoundingClientRect()    // 看它的位置尺寸
+```
+
+**③ Console 不止 log**
+```js
+console.table(users);            // 用表格看数组/对象，比 log 清楚 100 倍
+console.group('用户信息');        // 分组
+console.log('name', 'Zed');
+console.groupEnd();
+console.time('render');          // 计时开始
+// ...耗时代码
+console.timeEnd('render');       // 输出耗时
+console.warn('警告'); console.error('错误');  // 带颜色和图标
+```
+
+**④ 性能与无用代码**
+- `Ctrl + Shift + P` 输入 **Coverage** → 录制后能看到「哪些 CSS/JS 根本没被用到」，删冗余代码的利器。
+- **Lighthouse** 标签 → 一键生成性能 / 无障碍 / SEO 报告（分数 + 优化建议全给你）。
+- **Rendering** 面板（更多工具里）→ 打开 `Paint flashing` 能看到哪里在疯狂重绘，定位卡顿元凶。
+
+### 8.5 命名规范与代码组织
+
+**BEM 命名法**（大项目最常用）：
+```css
+.card {}
+.card__title {}        /* __ 表示「卡片里的标题」（元素） */
+.card--featured {}     /* -- 表示「重点样式」的变体（修饰符） */
+```
+好处：光看类名就知道它属于谁，CSS 不会互相打架。
+
+**老鸟的代码组织习惯：**
+1. `style.css` 顶部先写 `:root` 变量和全局重置，再按「导航 → Hero → 区块 → 页脚」的**页面顺序**写，和 HTML 结构对应。
+2. 每一块开头写 `/* ===== 3. Hero 区 ===== */` 注释，`Ctrl + F` 就能跳。
+3. 一个类只干一件事，不要写 `.red-big-title` 这种「外貌命名」（改样式时名字就骗人了），要写 `.section-title` 这种「语义命名」。
+4. 重复 3 次以上的东西，抽成变量或公共类——这就是 **DRY 原则**（Don't Repeat Yourself）。
+
+### 8.6 Git：老程序员的「后悔药」
+
+```bash
+git status                 # 看改了哪些文件（最常用）
+git diff                   # 看具体每一行改了什么
+git add .                  # 暂存所有改动
+git commit -m "fix: 修复导航栏滚动不生效"   # 提交
+git log --oneline --graph  # 看提交历史（图形化）
+git restore style.css      # 后悔：丢弃某个文件的改动
+git stash                  # 临时收起改动，切分支干活
+```
+
+**提交信息规范（Conventional Commits）——面试官会看你的 Git 记录：**
+| 前缀 | 含义 |
+| --- | --- |
+| `feat:` | 新功能 |
+| `fix:` | 修 bug |
+| `style:` | 只改样式/格式 |
+| `refactor:` | 重构（不改功能） |
+| `perf:` | 性能优化 |
+| `docs:` | 文档 |
+| `chore:` | 杂项（配置、依赖） |
+
+**老鸟习惯：小步提交。** 别攒一天再 `git commit -m "update"`。每完成一个**能跑通的小功能**就提交一次，出问题能精准回滚。
+
+### 8.7 部署上线（3 分钟免费发布）
+
+| 方式 | 步骤 | 适合 |
+| --- | --- | --- |
+| **GitHub Pages** | 推到 GitHub → Settings → Pages → Source 选 `main` 分支 → 得到 `xxx.github.io/仓库名` | 静态作品集，免费永久 |
+| **Vercel / Netlify** | 注册 → 拖拽文件夹 → 秒出网址 | 最快，支持自动部署 |
+| **本地预览** | `npx serve` 或 VS Code Live Server | 开发阶段 |
+
+> **作品集的终点是「有一个能发给 HR 的网址」**，不是躺在你硬盘里的文件夹。做完就部署，这一步价值巨大。
+
+---
+
+## 9. 老程序员的 CSS 实战技巧（25 条）
+
+> 这一章全是「知道了就再也回不去」的实用招数，每条都能直接抄进你的项目。
+
+### 9.1 布局类（省掉一半代码）
+
+**① `gap` 取代一堆 margin**
+```css
+/* 老写法：要处理「第一个/最后一个不该有 margin」 */
+.item { margin-right: 16px; }
+
+/* 新写法：一个属性搞定，首尾不留缝 */
+.row { display: flex; gap: 16px; }
+```
+`gap` 在 Flex 和 Grid 里都能用，是排版最干净的间距方案。
+
+**② `position: sticky` 粘性定位（比 fixed 好用）**
+```css
+.sidebar { position: sticky; top: 100px; }   /* 滚动到一定位置就「粘住」，但不会脱离文档流 */
+```
+页内目录、侧边栏、表头固定都用它，不会像 `fixed` 那样需要额外留白。
+
+**③ `inset: 0` 铺满父元素**
+```css
+.overlay { position: absolute; inset: 0; }   /* 等于 top/right/bottom/left 全 0 */
+```
+
+**④ 用 `aspect-ratio` 固定比例（防图片变形）**
+```css
+.thumb { aspect-ratio: 16 / 9; }   /* 不管宽度多少，永远 16:9 */
+```
+
+**⑤ 图片不变形的唯一正解**
+```css
+img { width: 100%; height: 100%; object-fit: cover; }
+/* cover=裁剪填满（不变形）  contain=完整显示（可能留白） */
+```
+
+**⑥ `min-height: 100vh` 的坑与解法**
+```css
+/* 手机浏览器地址栏会导致 100vh 溢出，用 dvh 更准 */
+.hero { min-height: 100dvh; }
+```
+
+### 9.2 选择器类（写得更少，管得更多）
+
+**⑦ `:is()` / `:where()` 简化重复选择器**
+```css
+/* 老写法 */
+.card h3, .card h4, .card h5 { color: #fff; }
+/* 新写法 */
+.card :is(h3, h4, h5) { color: #fff; }
+```
+
+**⑧ `:has()` 父级选择器（现代 CSS 的大杀器）**
+```css
+/* 只要卡片里有图片，就给它加内边距 */
+.card:has(img) { padding: 0; }
+/* 表单里输入框有内容时，把 label 变蓝 */
+.field:has(input:not(:placeholder-shown)) label { color: var(--accent); }
+```
+
+**⑨ `:not(:last-child)` 只给中间项加分隔**
+```css
+.item:not(:last-child)::after { content: ''; /* 画分隔线 */ }
+```
+
+**⑩ `:focus-visible` 只在键盘操作时显示聚焦框**
+```css
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+/* 鼠标点击不显示难看的蓝框，键盘 Tab 时才显示 —— 无障碍与美观兼得 */
+```
+
+### 9.3 视觉类（直接提升质感）
+
+**⑪ 多层阴影，比单层高级得多**
+```css
+.card {
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.3),      /* 贴身细节阴影 */
+    0 8px 24px rgba(0,0,0,0.4),     /* 中景阴影 */
+    0 24px 64px rgba(0,0,0,0.3);    /* 远景氛围阴影 */
+}
+```
+单层阴影是「贴纸」，三层阴影才是「漂浮」。
+
+**⑫ 渐变描边（比实线边框高级 10 倍）**
+```css
+.card {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+    linear-gradient(135deg, rgba(90,169,230,.8), rgba(255,255,255,.1)) border-box;
+}
+```
+
+**⑬ 文字渐变（标题专用）**
+```css
+.title {
+  background: linear-gradient(90deg, #fff, #5aa9e6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;               /* 关键：文字透明，露出背景渐变 */
+}
+```
+
+**⑭ `mix-blend-mode` 混合模式**
+```css
+.overlay { mix-blend-mode: overlay; }     /* 叠加、screen、multiply 都很常用 */
+```
+
+**⑮ `filter` 一行做特效**
+```css
+img { filter: grayscale(1) brightness(0.8); }        /* 灰度+压暗 */
+img:hover { filter: none; }                          /* 悬停恢复彩色 */
+.glow { filter: drop-shadow(0 0 12px rgba(90,169,230,.6)); }  /* PNG 图标发光 */
+```
+
+**⑯ `currentColor`：让图标自动跟随文字颜色**
+```css
+.btn { color: #5aa9e6; }
+.btn svg { fill: currentColor; }     /* 改 .btn 的颜色，图标自动跟着变 */
+```
+
+**⑰ 噪点/颗粒纹理（高级感的秘密武器）**
+```css
+body::after {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+```
+很多「看着很贵」的网站，就是偷偷加了一层几乎看不见的噪点。
+
+### 9.4 文字排版类
+
+**⑱ `clamp()` 做流体字号（一行顶三行媒体查询）**
+```css
+h1 { font-size: clamp(2rem, 6vw, 5rem); }   /* 最小2rem，理想6vw，最大5rem */
+```
+
+**⑲ 限制每行字数，阅读体验立刻提升**
+```css
+p { max-width: 65ch; }         /* 一行约 65 个字符是最舒服的阅读宽度 */
+```
+
+**⑳ `text-wrap: balance` 让标题换行更均匀**
+```css
+h2 { text-wrap: balance; }     /* 避免标题最后一个字孤零零掉到第二行 */
+```
+
+**㉑ 单行/多行省略号**
+```css
+.ellipsis { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }  /* 单行 */
+.clamp-2 {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;            /* 最多两行，超出省略 */
+}
+```
+
+**㉒ 中文排版细节**
+```css
+p {
+  text-align: justify;            /* 两端对齐（中文尤其好看） */
+  line-height: 1.8;               /* 中文行高比英文要更大，1.6~1.8 */
+  word-break: break-word;         /* 防止长英文/链接撑破容器 */
+  letter-spacing: 0.02em;         /* 中文正文加一点点字距更透气 */
+}
+```
+
+**㉓ 数字对齐用 `tabular-nums`（做数据面板必用）**
+```css
+.stat h3 { font-variant-numeric: tabular-nums; }  /* 每个数字等宽，数字变化时不跳动 */
+```
+
+### 9.5 动效与性能类
+
+**㉔ 只用 `transform` 和 `opacity` 做动画**
+```css
+/* ✅ 高性能：只触发合成层，不重排不重绘 */
+.card:hover { transform: translateY(-6px); opacity: 0.95; }
+
+/* ❌ 低性能：会导致整页重排，动画卡顿 */
+.card:hover { top: -6px; width: 320px; margin-top: -6px; }
+```
+**记住：动画只碰 `transform` / `opacity` / `filter`。**
+
+**㉕ 用 `@supports` 做渐进增强 + 尊重用户的「减少动效」偏好**
+```css
+/* 浏览器支持毛玻璃才用，不支持就退回纯色 */
+@supports (backdrop-filter: blur(10px)) {
+  .navbar { backdrop-filter: blur(12px); background: rgba(10,10,10,.7); }
+}
+
+/* 用户系统开了「减少动态效果」，就把动画关掉 */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+```
+
+**额外一条：自定义滚动条（细节控必做）**
+```css
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.15); border-radius: 999px;
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(90,169,230,0.6); }
+```
+
+---
+
+## 10. 老程序员的 JS 实战技巧
+
+> 你的 `main.js` 已经用了 `querySelector`、`addEventListener`、`IntersectionObserver`。
+> 这一章补上让代码更「稳、快、省」的实战招数。
+
+### 10.1 性能篇（你的项目马上能用）
+
+**① 事件委托：一个监听管一百个元素**
+```js
+// ❌ 老写法：给 100 个卡片各绑一个监听，浪费内存
+document.querySelectorAll('.focus-card').forEach(card => {
+  card.addEventListener('click', handleClick);
+});
+
+// ✅ 老鸟写法：只用 1 个监听，靠「冒泡」统一处理
+document.querySelector('.focus-grid').addEventListener('click', (e) => {
+  const card = e.target.closest('.focus-card');   // 找到被点的卡片
+  if (!card) return;
+  handleClick(card);
+});
+```
+> `e.target.closest(选择器)` 会向上找最近的匹配祖先，是事件委托的核心。
+
+**② `mousemove` / `scroll` 必须节流（你项目里的隐患）**
+```js
+// 危险：鼠标一动就执行，一秒可能触发 200 次，容易掉帧
+document.addEventListener('mousemove', heavyWork);
+
+// 安全：用 requestAnimationFrame 限制到「每帧最多一次」
+let ticking = false;
+document.addEventListener('mousemove', (e) => {
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(() => {
+    heavyWork(e);      // 真正的计算放这里
+    ticking = false;
+  });
+});
+```
+**防抖 vs 节流（面试常考）：**
+```js
+// 防抖 debounce：停下不动 300ms 后才执行（搜索框输入）
+function debounce(fn, delay = 300) {
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), delay);
+  };
+}
+
+// 节流 throttle：每 100ms 最多执行一次（滚动监听）
+function throttle(fn, gap = 100) {
+  let last = 0;
+  return (...args) => {
+    const now = Date.now();
+    if (now - last >= gap) { last = now; fn(...args); }
+  };
+}
+```
+
+**③ 批量读、批量写，避免「布局抖动」**
+```js
+// ❌ 读一次写一次，浏览器被迫反复重排（layout thrashing）
+cards.forEach(c => {
+  const h = c.offsetHeight;      // 读（触发布局计算）
+  c.style.height = h + 10 + 'px'; // 写（又触发）
+});
+
+// ✅ 先全部读，再全部写
+const heights = [...cards].map(c => c.offsetHeight);  // 只读
+cards.forEach((c, i) => { c.style.height = heights[i] + 10 + 'px' });  // 只写
+```
+
+### 10.2 写法篇（更短、更安全）
+
+**④ 可选链 `?.` 和空值合并 `??`**
+```js
+// 老写法：层层判断
+if (user && user.profile && user.profile.name) { ... }
+
+// 新写法
+const name = user?.profile?.name ?? '匿名';   // ?? = 只有 null/undefined 才用默认值
+```
+
+**⑤ `dataset` 在 HTML 和 JS 之间传数据**
+```html
+<button class="tab" data-target="works">作品</button>
+```
+```js
+btn.addEventListener('click', () => {
+  const id = btn.dataset.target;        // 拿到 "works"
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+});
+```
+
+**⑥ `classList` 的完整用法**
+```js
+el.classList.add('show');
+el.classList.remove('show');
+el.classList.toggle('show');            // 有就删，没有就加
+el.classList.toggle('dark', isDark);    // 第二个参数为 true 才加（更可控）
+el.classList.contains('show');          // 判断是否存在 → true/false
+```
+
+**⑦ `matchMedia`：用 JS 响应屏幕宽度**
+```js
+const mq = window.matchMedia('(max-width: 900px)');
+function handle(e) { console.log(e.matches ? '手机布局' : '桌面布局'); }
+mq.addEventListener('change', handle);
+handle(mq);   // 初始化时先跑一次
+```
+
+**⑧ 尊重用户的「减少动效」设置**
+```js
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+```
+> 这是**无障碍**的标配，老鸟都会写；只懂皮毛的人不会。
+
+**⑨ 加载脚本的正确姿势**
+```html
+<!-- 放在 </body> 前（你现在的做法，没问题） -->
+<script src="main.js"></script>
+
+<!-- 或放 <head> 但加 defer：不阻塞渲染，DOM 就绪后按顺序执行 -->
+<script src="main.js" defer></script>
+
+<!-- 如果是自己写的多文件 JS，用 module 才有作用域隔离 -->
+<script type="module" src="main.js"></script>
+```
+
+**⑩ 用 `forEach` 的索引参数做「交错入场」**
+```js
+document.querySelectorAll('.focus-card').forEach((card, i) => {
+  card.style.transitionDelay = `${i * 60}ms`;   // 做出「逐个入场」的错落感
+});
+```
+> 这叫 **stagger（交错动画）**，是高级网页最常见的入场手法之一。
+
+### 10.3 交互增强篇（把作品集做「贵」）
+
+**⑪ 用 `IntersectionObserver` 的 `rootMargin` 提前触发**
+```js
+new IntersectionObserver(callback, {
+  rootMargin: '0px 0px -100px 0px',   // 元素还没完全露出来就提前 100px 触发
+  threshold: 0.1
+});
+```
+
+**⑫ 滚动进度条**
+```js
+const bar = document.querySelector('.progress');
+window.addEventListener('scroll', () => {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  bar.style.transform = `scaleX(${window.scrollY / max})`;   // 用 transform 更流畅
+});
+```
+> ⚠️ 上面是「简化版」，真实项目请用第 13 章 **配方 2** 的 rAF 节流版本（否则滚动时每像素都在改样式）。
+
+**⑬ 主题切换 + 记忆（localStorage）**
+```js
+const root = document.documentElement;
+// 读取上次的选择（关键：要和 <head> 里的内联脚本配合，避免闪白）
+const saved = localStorage.getItem('theme');
+if (saved) root.dataset.theme = saved;
+
+document.querySelector('.theme-btn').addEventListener('click', () => {
+  const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+  root.dataset.theme = next;
+  localStorage.setItem('theme', next);
+});
+```
+配合 CSS：
+```css
+:root { --bg: #0a0a0a; --text: #fff; }
+:root[data-theme="light"] { --bg: #f7f7f8; --text: #111; }
+body { background: var(--bg); color: var(--text); }
+```
+
+**⑭ 平滑回到顶部**
+```js
+document.querySelector('.to-top').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+```
+
+**⑮ 数字滚动计数动画（作品集数字区神器）**
+```js
+function countUp(el, target, duration = 1500) {
+  const start = performance.now();
+  function tick(now) {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);          // easeOutCubic，越到后面越慢
+    el.textContent = Math.floor(eased * target);
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+countUp(document.querySelector('.stat-num'), 3408);
+```
+
+### 10.4 避坑篇（新人最容易翻车的地方）
+
+| 坑 | 现象 | 解法 |
+| --- | --- | --- |
+| 脚本写在 `<head>` 里且没 `defer` | 报错 `Cannot read properties of null` | 移到 `</body>` 前，或加 `defer` |
+| 用 `=` 而不是 `===` 判断 | 出现诡异 bug | 一律用 `===`（严格相等） |
+| `var` 造成变量提升混乱 | 循环里变量值不对 | 一律用 `const`，需要改就用 `let` |
+| `forEach` 里用 `await` | 不按顺序执行 | 用 `for...of` 循环 |
+| 忘记 `e.preventDefault()` | 页面跳走 / 表单刷新 | 明确阻止默认行为 |
+| 在循环里反复查 DOM | 慢 | 查询提到循环外 |
+| 直接改 `innerHTML` 拼接用户输入 | **XSS 安全漏洞** | 用 `textContent`，或用 `createElement` |
+
+> **安全提醒**：作品集里如果有留言/搜索功能，**永远不要**把用户输入直接塞进 `innerHTML`。用 `textContent` 才安全。
+
+---
+
+## 11. 调试 · 性能 · 无障碍（从业余到专业的三道关）
+
+> 前三章讲「怎么写得快」，这一章讲「怎么写得对、写得快（运行快）、写得人人能用」。
+> **这三关，是面试官和真实项目最看重的，也是新手和职业选手最大的差距。**
+
+### 11.1 调试：像侦探一样找 bug
+
+**① 最快的布局调试法**
+```css
+/* 临时加在 CSS 里，看所有元素的盒子边界（用 outline 不占空间，不会挤乱布局） */
+* { outline: 1px solid rgba(255, 0, 0, 0.5); }
+```
+> 为什么不用 `border`？因为 `border` 会改变元素实际尺寸，反而把布局挤乱；`outline` 不占空间。
+
+**② 排查「样式不生效」的标准三步**
+1. 按 `F12` → 选中元素 → 看 **Styles** 面板里你的规则有没有被**划掉**（划掉 = 被更高优先级的规则覆盖了）。
+2. 看 **Computed** 面板，找到那个属性的最终值，鼠标悬停能看到**是哪个文件、哪一行**给的。
+3. 常见元凶：CSS 里**后面重复定义了同名类**（你这项目里 `.contact-btn` / `.focus-card` 就是这个问题，见第 5.3 节）。
+
+**③ 用 `debugger` 断点代替到处 log**
+```js
+function heavyLogic(data) {
+  debugger;      // 代码执行到这里会「暂停」，你可以逐行看每个变量的值
+  // ...
+}
+```
+也可以在 DevTools 的 **Sources** 面板里，点行号左侧打红点断点，比 log 高效得多。
+
+**④ 条件断点（循环里只停我要的那次）**
+在 Sources 面板打红点 → 右键断点 → `Edit breakpoint` → 输入条件如 `i === 5`，只在第 6 次循环时暂停。
+
+**⑤ 打印对象时看到「旧值」怎么办**
+```js
+// ❌ 控制台显示的是对象引用，展开时值可能已经变了
+console.log(obj);
+// ✅ 打印快照副本
+console.log(structuredClone(obj));   // 或 JSON.parse(JSON.stringify(obj))
+```
+
+**⑥ 一段通用排查清单**
+- 控制台有红色报错吗？（先修报错，再谈样式）
+- 元素真的存在于 DOM 吗？（`$0` 检查）
+- JS 选择器拼写对吗？（`.focus-card` vs `focus-card`）
+- 事件真的触发了吗？（`addEventListener` 里先 `console.log('clicked')`）
+- 是缓存问题吗？（`Ctrl + Shift + R` 强制刷新）
+
+### 11.2 性能：让页面「丝滑」
+
+**① 图片优化（占比最大的一环）**
+```html
+<!-- 懒加载：滚到附近才加载，首屏快很多 -->
+<img src="avatar.png" alt="Zed" loading="lazy" width="500" height="600">
+
+<!-- 不同屏幕用不同尺寸的图（省流量 + 更清晰） -->
+<img
+  src="avatar-800.jpg"
+  srcset="avatar-400.jpg 400w, avatar-800.jpg 800w, avatar-1600.jpg 1600w"
+  sizes="(max-width: 900px) 100vw, 500px"
+  alt="Zed">
+```
+- **格式**：优先 `WebP` / `AVIF`（比 JPG 小 30%~50%），用 `<picture>` 做兼容回退。
+- **尺寸**：别拿 3000px 的大图缩到 500px 显示，按需裁好再上传。
+- **必写 `width`/`height`**：能防止图片加载时布局跳动（CLS 指标）。
+
+**② 字体优化**
+```css
+@font-face {
+  font-family: 'MyFont';
+  src: url('myfont.woff2') format('woff2');   /* woff2 体积最小 */
+  font-display: swap;    /* 关键：字体没加载完先用系统字体显示，避免「白屏无字」 */
+  unicode-range: U+4E00-9FFF;   /* 只加载需要的字符范围，中文站必用 */
+}
+```
+```html
+<!-- 提前预加载关键字体，减少等待 -->
+<link rel="preload" href="myfont.woff2" as="font" type="font/woff2" crossorigin>
+```
+> **最省事的做法**：直接用系统字体栈（`-apple-system, "PingFang SC", "Microsoft YaHei"`），零下载、零等待。你的项目现在就是这么做的 👍
+
+**③ CSS / JS 优化清单**
+| 项 | 做法 |
+| --- | --- |
+| 动画 | 只用 `transform` / `opacity`，不要动 `top`/`width`/`margin` |
+| 滚动/鼠标监听 | 节流（见 10.1 ②） |
+| 长列表 | `content-visibility: auto;` 跳过屏外渲染 |
+| 无用的 CSS | 用 DevTools 的 **Coverage** 面板找出来删掉 |
+| 加载方式 | 脚本加 `defer`；图片加 `loading="lazy"` |
+| 重排重绘 | 别在循环里频繁读写 DOM 尺寸 |
+| `will-change` | 只在动画开始前加，**用完要删**，滥用反而更卡 |
+
+**④ 打开 DevTools 的 Rendering 面板看真相**
+- `Paint flashing`：绿色闪的地方就是正在重绘的区域，闪得越多越慢。
+- `Layout Shift Regions`：蓝色闪烁代表布局在跳动（体验差）。
+- FPS meter：看帧率是否稳定 60fps。
+
+**⑤ 用 Lighthouse 打分**
+DevTools → Lighthouse → 勾选 Performance / Accessibility / Best Practices / SEO → Analyze。
+**目标：每项 90+**。报告会逐条告诉你哪里扣分、怎么改，等于一个免费的性能顾问。
+
+### 11.3 无障碍（a11y）：让所有人都能用
+
+> 这不是「加分项」，是**专业底线**。而且做好了 SEO 也会更好。
+
+| 要做的事 | 怎么做 |
+| --- | --- |
+| 用语义标签 | 用 `<nav>` `<header>` `<main>` `<button>`，别全用 `<div>` |
+| 图片写 `alt` | `<img src="x.png" alt="简介">`；纯装饰图写 `alt=""` |
+| 按钮用 `<button>` | 别用 `<div onclick>`（键盘 Tab 到不了、读屏软件不认识） |
+| 表单要有 `label` | `<label for="email">邮箱</label><input id="email">` |
+| 键盘可达 | 所有交互都能用 `Tab` 走到、`Enter`/`Space` 触发 |
+| 聚焦可见 | 用 `:focus-visible` 给出清晰的聚焦样式，**不要 `outline: none` 一刀切** |
+| 颜色对比度 | 正文对比度至少 **4.5:1**（W3C 标准），别用浅灰配深灰 |
+| 图标按钮加标签 | `<button aria-label="关闭">✕</button>` |
+| 声明语言 | `<html lang="zh-CN">`（你已做对 👍） |
+| 尊重减少动效 | `@media (prefers-reduced-motion: reduce)` |
+| 跳过导航链接 | 页面顶部加 `<a href="#main" class="skip-link">跳到主内容</a>`，键盘用户能跳过导航直达正文 |
+
+**检查工具**：DevTools → Lighthouse → Accessibility；或装浏览器扩展 **axe DevTools**，一键扫出所有无障碍问题。
+
+**一个简单的对比度检查法**：把页面截图转成灰度，如果文字和背景还能分得清，对比度基本就是合格的。
+
+---
+
+## 12. 让网页「一眼高级」的 20 个操作手法
+
+> 前面讲的是「技术」，这一章讲「审美」。
+> 高级感不是玄学，它是**一堆可执行的具体操作**。下面 20 条，做 80% 就能超过 95% 的同行。
+
+### 12.1 结构层：先搭好骨架
+
+**① 用 8pt 间距系统（最重要的一条）**
+所有间距只用这几个值：`4 / 8 / 16 / 24 / 32 / 48 / 64 / 96 / 128`（px，或对应的 rem）。
+```css
+:root {
+  --space-1: 4px;  --space-2: 8px;   --space-3: 16px;  --space-4: 24px;
+  --space-5: 32px; --space-6: 48px;  --space-7: 64px;  --space-8: 96px;
+}
+```
+> **为什么？** 因为这些数字之间有固定的倍数节奏，排出来的页面「哪哪都对」。
+
+**② 字号阶梯（Type Scale），别随意定字号**
+```css
+:root {
+  --fs-xs: 0.75rem;   /* 12px 辅助 */
+  --fs-sm: 0.875rem;  /* 14px 小字 */
+  --fs-base: 1rem;    /* 16px 正文 */
+  --fs-lg: 1.25rem;   /* 20px 小标题 */
+  --fs-xl: 1.5rem;    /* 24px 标题 */
+  --fs-2xl: 2rem;     /* 32px */
+  --fs-3xl: 3rem;     /* 48px */
+  --fs-4xl: 5rem;     /* 80px 主标题 */
+}
+```
+规矩：每级相差 1.25~1.5 倍，不要出现 17px、23px 这种「随手写的数」。
+
+**③ 拉开粗细与颜色对比（对比 = 高级）**
+标题 `800` 粗 + 纯白，副标题 `300` 细 + 灰色 60%，正文 `400` + 灰 70%。
+> 新手最容易犯的错：**所有文字都一样粗细、一样颜色**，页面就「平」了。
+
+**④ 留白（白空间）要敢给**
+- 区块之间至少 `6rem`（96px）的间距。
+- 卡片内部 `2rem` 起步。
+- **不要怕空**。拥挤 = 廉价，留白 = 昂贵。
+
+**⑤ 限制内容宽度、对齐到网格**
+```css
+.container { max-width: 1200px; margin-inline: auto; padding-inline: 2rem; }
+p { max-width: 65ch; }
+.title, .desc, .btn { /* 全部左对齐到同一条竖线 */ }
+```
+> 页面里所有元素应该**对齐到少数几条隐形的线**。左对齐是最安全的选择。
+
+### 12.2 视觉层：让它「有质感」
+
+**⑥ 全站只用 1 个强调色**
+你的项目用了科技蓝 `#5aa9e6`，非常好。再加第二个颜色前，先问自己「真的需要吗」。
+> **强调色只用在 10% 的地方**：小标签、编号、关键数字、悬停状态。剩下 90% 全是黑/白/灰。
+
+**⑦ 暗色主题：别用纯黑，用「近黑」**
+```css
+--bg: #0a0a0a;        /* ✅ 深邃黑，有层次 */
+--bg: #000000;        /* ❌ 纯黑，OLED 上像黑洞，且没有层次 */
+```
+配合多层「渐变叠加」做背景，而不是一张纯色。
+
+**⑧ 微妙渐变（不要明显的彩虹渐变）**
+```css
+background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
+```
+> 好渐变的标准是：**几乎看不出来，但去掉就觉得少了点什么。**
+
+**⑨ 光晕 / Glow（科技感的来源）**
+```css
+box-shadow: 0 0 40px rgba(90, 169, 230, 0.15);   /* 越大越柔越高级 */
+```
+
+**⑩ 玻璃拟态（半透明 + 模糊）**
+```css
+background: rgba(20, 20, 20, 0.4);
+backdrop-filter: blur(16px);
+border: 1px solid rgba(255, 255, 255, 0.08);
+```
+
+**⑪ 渐变描边 + 内发光**
+```css
+.card {
+  position: relative;
+  border-radius: 16px;
+  background: rgba(20,20,20,0.6);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);  /* 顶部一条内高光 = 玻璃反光感 */
+}
+```
+
+**⑫ 圆角要有「统一语言」**
+要么全用 `8px`（偏硬朗），要么全用 `16px`（偏柔和），要么全用 `999px`（胶囊）。
+> **千万别出现**：这个卡片 4px、那个按钮 12px、另一个 20px —— 一眼杂牌。
+
+**⑬ 加一层「噪点 / 颗粒」**
+见第 9.3 节 ⑰。这一个 3KB 的效果，能让页面的质感凭空上一个台阶。
+
+**⑭ 图片处理三件套**
+```css
+img {
+  border-radius: 12px;                       /* 圆角 */
+  border: 1px solid rgba(255,255,255,0.08);  /* 细边框，区分于背景 */
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+```
+再加一点 **渐变叠加** 或 **底部渐隐**（`mask-image`），高级感立刻出来。
+
+### 12.3 动效层：让它「会呼吸」
+
+**⑮ 用正确的缓动曲线（这条最被忽视，也最提质感）**
+```css
+:root {
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);      /* 出场：快进慢出，最常用 */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* 弹一下，可爱 */
+}
+.card { transition: transform 0.4s var(--ease-out); }
+```
+> ❌ 别整天用 `ease` / `linear`。✅ 改用 `cubic-bezier(0.16, 1, 0.3, 1)`，同样的动画立刻「贵」起来。
+
+**⑯ 时长要短：150~400ms**
+- 悬停反馈：`150~200ms`
+- 卡片浮起：`250~350ms`
+- 入场淡入：`400~600ms`
+> 超过 `600ms` 用户就嫌慢了。低于 `100ms` 又感觉不到。
+
+**⑰ 交错入场（Stagger）**
+```css
+.focus-card {
+  transition: opacity .7s var(--ease-out), transform .7s var(--ease-out);
+  transition-delay: var(--delay, 0ms);   /* 每个卡片不同的延迟 */
+}
+```
+配合第 10.2 节 ⑩ 的 JS 给每张卡片写入 `--delay`，它们就会「依次」出现，而不是「一起」出现。
+（完整可用的写法直接看第 13 章 **配方 12**。）
+> 这一个细节，是「专业作品集」和「学生作业」的分水岭。
+
+**⑱ 微交互反馈（让人爱上点你的按钮）**
+```css
+.btn { transition: transform 0.2s var(--ease-out), box-shadow 0.2s; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(90,169,230,.3); }
+.btn:active { transform: translateY(0) scale(0.98); }   /* 按下时「陷进去」 */
+```
+**这三种状态都要有：** `hover`（悬停）/ `active`（按下）/ `focus-visible`（键盘聚焦）。
+
+**⑲ 滚动时「有反应」**
+- 内容淡入（你已有 👍）
+- 导航栏背景加深（你已有 👍）
+- 滚动进度条（第 10.3 节）
+- 视差（`background-attachment: fixed` 或 `transform: translateY` 配合滚动）
+
+**⑳ 首屏第一秒就要抓住人**
+- 主标题要有「一句话价值主张」（你是谁 + 做什么）。
+- 数字/成绩要显眼（你已有 👍）。
+- 别让首屏出现加载空白，可用**骨架屏（skeleton）**占位。
+
+### 12.4 一页纸速记口诀
+
+> **间距离散化、字号阶梯化、色彩克制化、留白大胆化、圆角统一化、动效曲线化、强调只 10%。**
+
+再加一句最实用的自查：**把你的页面截图，和 Dribbble / Awwwards 上的优秀作品放一起看**——差在哪，一眼就能看出来。
+
+---
+
+## 13. 独门配方库（可直接复制粘贴）
+
+> 这一章是「菜谱」。每个配方都是**完整可用**的，复制进你的项目就能跑。
+> 建议做法：**一次只加一个**，加完看效果、调变量，再加下一个。
+
+### 配方 1：渐变描边 + 光晕卡片
+
+```html
+<div class="gcard">
+  <h3>机械设计</h3>
+  <p>结构仿真与轻量化优化</p>
+</div>
+```
+
+```css
+.gcard {
+  position: relative;
+  padding: 24px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.01));
+  transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s;
+}
+
+/* 用 mask 做「渐变描边」：只保留 1px 的边框区域 */
+.gcard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(90,169,230,.65), rgba(255,255,255,.06) 45%, transparent 75%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+.gcard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 40px rgba(90,169,230,.15);
+}
+```
+> **原理**：`mask` 用「内容盒」和「整个盒子」两份遮罩相减，只剩边框那一圈可见。
+
+### 配方 2：滚动进度条
+
+```html
+<div class="read-progress" aria-hidden="true"></div>
+```
+```css
+.read-progress {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+  background: linear-gradient(90deg, #5aa9e6, #a78bfa);
+  transform: scaleX(0);
+  transform-origin: 0 50%;       /* 关键：从左边开始伸长 */
+  z-index: 9999;
+  pointer-events: none;
+}
+```
+```js
+const bar = document.querySelector('.read-progress');
+let ticking = false;
+
+function updateProgress() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const ratio = max > 0 ? window.scrollY / max : 0;
+  bar.style.transform = `scaleX(${Math.min(ratio, 1)})`;
+  ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if (!ticking) {
+    ticking = true;
+    requestAnimationFrame(updateProgress);
+  }
+}, { passive: true });
+```
+> **为什么用 `transform: scaleX` 而不是 `width`？** 缩放只触发合成，不引发重排，滚动时不会卡。
+> `{ passive: true }` 告诉浏览器「这个监听不会 `preventDefault`」，滚动更顺。
+
+### 配方 3：回到顶部按钮
+
+```html
+<button class="to-top" aria-label="回到顶部">↑</button>
+```
+```css
+.to-top {
+  position: fixed;
+  right: 24px; bottom: 24px;
+  width: 48px; height: 48px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 50%;
+  background: rgba(20,20,20,.6);
+  backdrop-filter: blur(12px);
+  color: #fff; font-size: 20px; cursor: pointer;
+  opacity: 0; visibility: hidden; transform: translateY(12px);
+  transition: opacity .3s, transform .3s var(--ease-out), visibility .3s;
+}
+.to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.to-top:hover { border-color: rgba(90,169,230,.6); box-shadow: 0 0 24px rgba(90,169,230,.35); }
+```
+```js
+const toTop = document.querySelector('.to-top');
+
+window.addEventListener('scroll', () => {
+  toTop.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.6);
+}, { passive: true });
+
+toTop.addEventListener('click', () => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+});
+```
+> 注意用 `opacity + visibility` 控制显隐（而不是 `display: none`），否则 `transition` 不生效。
+
+### 配方 4：数字滚动计数
+
+```html
+<div class="stat">
+  <h3 class="stat-num" data-target="3408">0</h3>
+  <p>累计设计工时</p>
+</div>
+```
+```js
+function countUp(el, duration = 1600) {
+  const target = Number(el.dataset.target);
+  const start = performance.now();
+
+  const step = (now) => {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);          // easeOutCubic
+    el.textContent = Math.round(eased * target).toLocaleString();
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// 进入视口时才触发（滚到才动，体验最好）
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    countUp(entry.target);
+    io.unobserve(entry.target);        // 只跑一次
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-num').forEach((el) => io.observe(el));
+```
+> `.toLocaleString()` 会把 `3408` 显示成 `3,408`，一下就专业了。
+
+### 配方 5：打字机效果
+
+```html
+<h1 class="typewriter" data-text="我是一名机械设计工程师"></h1>
+```
+```css
+.typewriter { display: inline-block; }
+.typewriter::after {
+  content: '';
+  display: inline-block;
+  width: 2px; height: 1em;
+  margin-left: 4px;
+  background: currentColor;
+  vertical-align: -0.12em;
+  animation: caret .9s steps(1) infinite;
+}
+@keyframes caret { 50% { opacity: 0; } }
+```
+```js
+const el = document.querySelector('.typewriter');
+const text = el.dataset.text;
+let i = 0;
+
+function type() {
+  el.textContent = text.slice(0, ++i);
+  if (i < text.length) setTimeout(type, 90);
+}
+type();
+```
+> `steps(1)` 让光标「闪」而不是「渐变」，才有真实的终端感。
+> 想更细腻可以配合 `prefers-reduced-motion`：若用户开了减少动效，直接 `el.textContent = text`。
+
+---
+
+### 配方 6：鼠标跟随光晕（rAF 优化版）
+
+> 你的项目里已有 `.bg-glow` 跟随鼠标，但它是**每动一次就改一次**。这里给出更流畅的写法。
+> （先看第 5.4 节：你原来的 `--global-x` / `--global-y` / `--edge-intensity` 是**没被用到**的死变量。）
+
+```html
+<div class="bg-glow" aria-hidden="true"></div>
+```
+```css
+.bg-glow {
+  position: fixed;
+  top: 0; left: 0;
+  width: 700px; height: 700px;
+  margin: -350px 0 0 -350px;          /* 让圆心对准鼠标 */
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(90,169,230,.18), transparent 65%);
+  filter: blur(40px);
+  pointer-events: none;               /* 关键：别挡住点击 */
+  z-index: 0;
+  transform: translate3d(-9999px, -9999px, 0);   /* 初始藏在屏幕外 */
+  transition: opacity .6s;
+  will-change: transform;
+}
+```
+```js
+const glow = document.querySelector('.bg-glow');
+let mx = window.innerWidth / 2;
+let my = window.innerHeight / 2;
+let gx = mx, gy = my;
+let ticking = false;
+
+document.addEventListener('mousemove', (e) => {
+  mx = e.clientX;
+  my = e.clientY;
+  if (ticking) return;
+  ticking = true;
+  requestAnimationFrame(render);
+});
+
+// 缓动跟随：光晕慢慢「追」鼠标，比硬跟随高级得多
+function render() {
+  gx += (mx - gx) * 0.08;
+  gy += (my - gy) * 0.08;
+  glow.style.transform = `translate3d(${gx}px, ${gy}px, 0)`;
+
+  if (Math.abs(mx - gx) > 0.5 || Math.abs(my - gy) > 0.5) {
+    requestAnimationFrame(render);       // 还没追上，继续追
+  } else {
+    ticking = false;                     // 追上了，停下等下一次 mousemove
+  }
+}
+
+// 触屏设备没有鼠标，直接隐藏
+if (matchMedia('(hover: none)').matches) glow.style.display = 'none';
+```
+> **两个关键点**：① `requestAnimationFrame` 限帧；② `0.08` 的插值做出「延迟跟随」的高级感。
+
+### 配方 7：骨架屏（Skeleton）
+
+```html
+<div class="skeleton" style="width:100%; height:220px; border-radius:16px;"></div>
+```
+```css
+.skeleton {
+  background: linear-gradient(90deg,
+    rgba(255,255,255,.04) 25%,
+    rgba(255,255,255,.10) 37%,
+    rgba(255,255,255,.04) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+@keyframes shimmer {
+  from { background-position: 100% 50%; }
+  to   { background-position: 0 50%; }
+}
+```
+> 加载真实内容前，先用这个占位，页面不会「从空白突然跳出来」，体验立刻专业。
+
+### 配方 8：图片懒加载 + 淡入
+
+```html
+<img class="lazy-img" src="avatar.jpg" alt="Zed" loading="lazy" decoding="async" width="500" height="600">
+```
+```css
+.lazy-img {
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+}
+.lazy-img.is-loaded { opacity: 1; transform: scale(1); }
+```
+```js
+document.querySelectorAll('.lazy-img').forEach((img) => {
+  if (img.complete) {
+    img.classList.add('is-loaded');        // 已经在缓存里，直接显示
+  } else {
+    img.addEventListener('load', () => img.classList.add('is-loaded'), { once: true });
+    img.addEventListener('error', () => img.classList.add('is-loaded'), { once: true });
+  }
+});
+```
+> 一定要处理 `img.complete`（缓存命中时 `load` 事件不会再触发，会导致图片永远不显示——新手最常见的坑）。
+
+### 配方 9：深浅色主题切换（防闪白）
+
+```html
+<!-- 放在 </head> 之前，必须内联、必须同步执行，否则会「闪一下白」 -->
+<script>
+  (function () {
+    const t = localStorage.getItem('theme');
+    if (t) document.documentElement.dataset.theme = t;
+  })();
+</script>
+```
+```html
+<button class="theme-btn" aria-label="切换主题">🌓</button>
+```
+```css
+:root {
+  --bg: #0a0a0a;
+  --text: #f2f2f2;
+  --bg-card: rgba(255,255,255,.04);
+  --border: rgba(255,255,255,.10);
+}
+:root[data-theme="light"] {
+  --bg: #f7f7f9;
+  --text: #16161a;
+  --bg-card: rgba(0,0,0,.03);
+  --border: rgba(0,0,0,.10);
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color .35s, color .35s;
+}
+```
+```js
+const btn = document.querySelector('.theme-btn');
+btn.addEventListener('click', () => {
+  const root = document.documentElement;
+  const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+  root.dataset.theme = next;
+  localStorage.setItem('theme', next);
+});
+```
+> **为什么要内联脚本？** 如果等 `main.js` 下载完再设置主题，页面会先用默认色渲染一帧，再突变——这就是著名的 **FOUC（闪白）**。
+
+### 配方 10：自定义滚动条 + 选中文字颜色
+
+```css
+/* 滚动条 */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,.14);
+  border-radius: 999px;
+  border: 2px solid var(--bg);        /* 留 2px 缝隙更精致 */
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(90,169,230,.55); }
+
+/* 选中文字的颜色（细节控必做） */
+::selection { background: rgba(90,169,230,.35); color: #fff; }
+
+/* 键盘 Tab 的聚焦环统一风格 */
+:focus-visible { outline: 2px solid rgba(90,169,230,.8); outline-offset: 3px; border-radius: 4px; }
+```
+
+---
+
+### 配方 11：移动端汉堡菜单（作品集必做）
+
+> 你现在窄屏下是「把导航链接隐藏」，但**用户就没有导航了**。正确做法是给一个汉堡菜单。
+
+```html
+<header class="nav">
+  <a class="logo" href="#top">Zed Li</a>
+
+  <button class="nav-toggle" aria-label="打开菜单" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav class="nav-links" id="nav-links">
+    <a href="#about">About</a>
+    <a href="#works">Works</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+```
+```css
+.nav { display: flex; align-items: center; justify-content: space-between; }
+
+.nav-toggle {
+  display: none;                       /* 桌面隐藏 */
+  flex-direction: column; gap: 5px;
+  width: 44px; height: 44px;
+  align-items: center; justify-content: center;
+  background: none; border: 0; cursor: pointer;
+}
+.nav-toggle span {
+  display: block; width: 22px; height: 2px;
+  background: currentColor; border-radius: 2px;
+  transition: transform .3s var(--ease-out), opacity .2s;
+}
+
+/* 打开时：上下两条线转成 ✕ */
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 900px) {
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    position: fixed;
+    inset: 64px 0 auto 0;              /* 贴在导航栏下方铺满 */
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 24px 24px;
+    background: rgba(10,10,10,.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    transform: translateY(-120%);      /* 默认收在上方外面 */
+    transition: transform .4s var(--ease-out);
+  }
+  .nav-links.is-open { transform: translateY(0); }
+}
+```
+```js
+const toggle = document.querySelector('.nav-toggle');
+const links = document.querySelector('.nav-links');
+
+toggle.addEventListener('click', () => {
+  const open = toggle.getAttribute('aria-expanded') === 'true';
+  toggle.setAttribute('aria-expanded', String(!open));
+  toggle.setAttribute('aria-label', open ? '打开菜单' : '关闭菜单');
+  links.classList.toggle('is-open', !open);
+});
+
+// 点任意链接后自动关闭菜单（否则页面跳了菜单还开着）
+links.addEventListener('click', (e) => {
+  if (!e.target.matches('a')) return;
+  toggle.setAttribute('aria-expanded', 'false');
+  links.classList.remove('is-open');
+});
+
+// 按 Esc 关闭（无障碍细节）
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    toggle.setAttribute('aria-expanded', 'false');
+    links.classList.remove('is-open');
+  }
+});
+```
+> 用 `aria-expanded` 表达状态，读屏软件能听懂；用 `transform` 做动画，不卡。
+
+### 配方 12：卡片交错入场（完整版）
+
+```css
+.focus-card {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity .7s cubic-bezier(.16,1,.3,1) var(--delay, 0ms),
+    transform .7s cubic-bezier(.16,1,.3,1) var(--delay, 0ms),
+    border-color .3s, box-shadow .3s;
+}
+.focus-card.is-visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .focus-card { opacity: 1; transform: none; transition: none; }
+}
+```
+```js
+const cards = document.querySelectorAll('.focus-card');
+
+// ① 用 JS 写入序号，CSS 用 var(--delay) 依次延迟
+cards.forEach((card, i) => card.style.setProperty('--delay', `${i * 90}ms`));
+
+// ② 进入视口才播放（只播一次）
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('is-visible');
+    io.unobserve(entry.target);
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+
+cards.forEach((card) => io.observe(card));
+```
+> 这一套（`opacity + translateY + 交错延迟 + IntersectionObserver`）就是**几乎所有高端网站的入场方式**。
+
+---
+
+### 配方 13：轻量视差滚动
+
+```html
+<section class="parallax">
+  <div class="parallax__bg" data-speed="0.25"></div>
+  <div class="parallax__content"><h2>让作品自己说话</h2></div>
+</section>
+```
+```css
+.parallax { position: relative; overflow: hidden; min-height: 60vh; }
+.parallax__bg {
+  position: absolute;
+  inset: -20% 0;                        /* 上下多留一点，滚动时不露边 */
+  background: center / cover no-repeat url('bg.jpg');
+  will-change: transform;
+}
+.parallax__content { position: relative; z-index: 1; }
+```
+```js
+const items = document.querySelectorAll('[data-speed]');
+let ticking = false;
+
+function parallax() {
+  items.forEach((el) => {
+    const rect = el.parentElement.getBoundingClientRect();
+    const speed = Number(el.dataset.speed);
+    // 元素相对视口中心的偏移量 × 速度
+    const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * speed;
+    el.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
+  });
+  ticking = false;
+}
+
+window.addEventListener('scroll', () => {
+  if (!ticking) { ticking = true; requestAnimationFrame(parallax); }
+}, { passive: true });
+parallax();
+```
+> ⚠️ 别用 `background-attachment: fixed` 做视差——**iOS Safari 上会直接失效**。用 `transform` 才跨平台。
+> 位移幅度控制在 `0.1~0.3`，轻微位移最高级，过头就变成 2010 年的老网页。
+
+### 配方 14：磁吸发光按钮
+
+```html
+<a class="magnet-btn" href="#contact"><span>与我合作</span></a>
+```
+```css
+.magnet-btn {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 32px;
+  border-radius: 999px;
+  color: #05202f; font-weight: 700; text-decoration: none;
+  background: linear-gradient(135deg, #8fd0ff, #5aa9e6);
+  box-shadow: 0 8px 30px rgba(90,169,230,.35);
+  transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s;
+  will-change: transform;
+}
+.magnet-btn:hover { box-shadow: 0 14px 44px rgba(90,169,230,.55); }
+.magnet-btn:active { transform: scale(.97); }
+```
+```js
+document.querySelectorAll('.magnet-btn').forEach((btn) => {
+  const strength = 0.28;
+
+  btn.addEventListener('mousemove', (e) => {
+    const r = btn.getBoundingClientRect();
+    const dx = (e.clientX - (r.left + r.width / 2)) * strength;
+    const dy = (e.clientY - (r.top + r.height / 2)) * strength;
+    btn.style.transform = `translate(${dx}px, ${dy}px)`;
+  });
+
+  // 鼠标离开 → 弹回原位（配合 cubic-bezier 有回弹感）
+  btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0, 0)'; });
+});
+```
+> **别滥用**：整站只有 1~2 个按钮做磁吸效果才叫「高级」，到处都是就变成「不专业」。
+
+### 配方 15（进阶）：纯 CSS 滚动驱动动画
+
+> 2024 年后的新能力，不用一行 JS 就能做滚动动画（Chrome / Edge 已支持）。
+
+```css
+@supports (animation-timeline: scroll()) {
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal-on-scroll {
+    animation: reveal linear both;
+    animation-timeline: view();          /* 跟着「元素进入视口」的进度走 */
+    animation-range: entry 10% cover 35%;
+  }
+}
+```
+> 注意放在 `@supports` 里，不支持的浏览器就完全没这段动画——**页面依然正常显示，这叫渐进增强**。
+
+### 配方使用顺序建议
+
+1. 先做 **配方 12**（入场动画）—— 性价比最高，改动最小、改观全站。
+2. 再做 **配方 2**（进度条）+ **配方 3**（回顶部）—— 覆盖面最广。
+3. 然后 **配方 1**（渐变描边卡片）—— 视觉观感提升最大。
+4. 最后按需加 **配方 6 / 11 / 14 / 15** —— 这些是「加分项」，别一开始就上。
+
+> ⚠️ **最后一个忠告**：不要一次把所有效果都加上。**克制**本身就是高级感的一部分。
+
+---
+
+## 14. 结语
 
 你现在手里这个 `my-portfolio`，麻雀虽小五脏俱全：
 
@@ -1062,6 +2549,31 @@ el.style.setProperty('--x', value + 'px');
 **这三样东西就是「高级精美网页」的全部底牌。** 换个颜色、换套内容，同样的技术就能做出无数种网站。
 
 接下来最该做的一件事：**照着第 5 章的「代码体检」，动手把问题一个个修掉。** 改代码的过程，比看十篇教程都有用。
+
+### 一份可以直接照着做的「行动清单」
+
+**第 1 周 · 把地基打牢**
+1. 修掉第 5 章的 7 个问题（缺图、重复 CSS、重复 `bg-glow`、死变量、内容不一致）。
+2. 按第 8 章配好 VS Code 插件 + 保存自动格式化，把快捷键练成肌肉记忆。
+
+**第 2 周 · 把体验补齐**
+3. 用第 13 章 **配方 12** 重写入场动画（交错入场，观感立刻不同）。
+4. 用第 13 章 **配方 11** 加上移动端汉堡菜单（否则手机用户没导航）。
+5. 用第 10 章 ① ② 把 `mousemove` / `scroll` 监听改成 rAF 节流。
+
+**第 3 周 · 把质感提上去**
+6. 按第 12 章的自查清单过一遍：间距是否离散、字号是否有阶梯、圆角是否统一、缓动是否用了 `cubic-bezier`。
+7. 用第 9 章 ⑪ ⑫ ⑰ 给卡片加三层阴影 + 渐变描边 + 噪点纹理。
+8. 加上第 13 章 **配方 2**（滚动进度条）和 **配方 9**（深浅色主题）。
+
+**第 4 周 · 把专业度做出来**
+9. 跑一次 Lighthouse，把各项分数刷到 90+（第 11.2 节）。
+10. 过一遍无障碍清单（第 11.3 节）：`alt`、`:focus-visible`、对比度、键盘可达。
+11. 用第 8.7 节把网站部署上线，拿到一个能发给 HR 的网址。
+12. 把整个过程的每一步都 `git commit`，让提交记录成为你的「学习履历」。
+
+> **学前端最快的路径不是「看完」，而是「改完 + 部署 + 有人看」。**
+> 你现在手上这份代码，已经足够撑起一个像样的作品集了 —— 差的只是那几十次「打开 DevTools 调一调」的耐心。
 
 学习路上有问题，随时回来翻这份笔记。祝你把网页做得又稳又漂亮。 🚀
 
