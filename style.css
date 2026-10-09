@@ -1,0 +1,468 @@
+/* ================= 1. 全局基础设置 ================= */
+:root {
+  --bg: #0a0a0a;           /* 深邃黑背景色 */
+  --bg-card: #141414;      /* 卡片背景色，稍微亮一点点 */
+  --text-main: #ffffff;    /* 主文字颜色：纯白 */
+  --text-sub: #a1a1a6;     /* 次要文字颜色：灰色 */
+  --accent: #5aa9e6;       /* 点缀色：科技蓝 */
+  --border: rgba(255,255,255,0.08); /* 非常淡的边框线 */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ================= 2. 导航栏（毛玻璃效果） ================= */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 4rem;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(12px); /* 魔法代码：毛玻璃 */
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+}
+
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: 1px; }
+.logo-box {
+  width: 32px; height: 32px; background: #fff; color: #000;
+  display: flex; justify-content: center; align-items: center;
+  border-radius: 8px; font-weight: 800;
+}
+
+.nav-links a { margin: 0 1rem; color: var(--text-sub); font-size: 0.9rem; transition: 0.3s; }
+.nav-links a:hover, .nav-links a.active { color: #fff; }
+
+.contact-btn {
+  position: relative;        /* 必须加：为光晕定位做铺垫 */
+  padding: 0.6rem 1.5rem; 
+  border: 1px solid var(--border);
+  border-radius: 999px; 
+  font-size: 0.9rem; 
+  color: #fff;
+  background: rgba(255,255,255,0.05); /* 深色底 */
+  overflow: hidden;          /* 关键：保证光晕不会跑出按钮外面 */
+  transition: border-color 0.3s;
+}
+
+.contact-btn:hover {
+  border-color: rgba(255,255,255,0.3); /* 鼠标悬停时边框变亮一点 */
+}
+
+/* 这是跟随鼠标的泛光核心代码 */
+.contact-btn::before {
+  content: '';
+  position: absolute;
+  /* 用径向渐变画一个光斑，光斑位置由 CSS 变量控制 */
+  background: radial-gradient(
+    150px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+    rgba(255, 255, 255, 0.25), /* 泛光的颜色和强度 */
+    transparent 40%
+  );
+  inset: 0;
+  opacity: 0;                /* 默认隐藏 */
+  transition: opacity 0.3s;
+  pointer-events: none;      /* 让鼠标可以穿透，不干扰点击 */
+  z-index: 1;
+}
+
+.contact-btn:hover::before {
+  opacity: 1;                /* 鼠标悬停时显示泛光 */
+}
+
+/* ================= 3. Hero 大区（高级排版） ================= */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 4rem 4rem;
+  overflow: hidden;
+}
+
+.hero-content { max-width: 800px; z-index: 2; } /* 让文字盖在图片上面 */
+
+.hero-tag { 
+  color: var(--accent); 
+  font-size: 0.85rem; 
+  letter-spacing: 2px; 
+  margin-bottom: 2rem; 
+  font-weight: 600;
+}
+
+.hero-title {
+  font-size: 5rem;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin-bottom: 1.5rem;
+}
+.hero-title .white { color: #fff; font-weight: 800; }
+.hero-title .grey { color: #666; font-weight: 300; }
+
+.hero-subtitle { font-size: 1.4rem; font-weight: 500; margin-bottom: 1rem; }
+.hero-desc { color: var(--text-sub); max-width: 600px; margin-bottom: 2.5rem; }
+
+.hero-actions { display: flex; gap: 1rem; margin-bottom: 4rem; }
+.btn-primary { background: #fff; color: #000; padding: 0.8rem 2rem; border-radius: 8px; font-weight: 600; transition: 0.3s;}
+.btn-primary:hover { opacity: 0.8; }
+.btn-secondary { background: rgba(255,255,255,0.05); padding: 0.8rem 2rem; border-radius: 8px; border: 1px solid var(--border); transition: 0.3s;}
+.btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+/* 数字统计区 */
+.stats-grid { display: flex; gap: 4rem; border-top: 1px solid var(--border); padding-top: 2rem;}
+.stat-item h3 { font-size: 2.5rem; font-weight: 700; }
+.stat-item h3 .small { font-size: 1rem; color: var(--text-sub); font-weight: 400;}
+.stat-item p { font-size: 1rem; margin-top: 0.5rem; }
+.stat-item small { color: var(--text-sub); font-size: 0.8rem; }
+
+/* 人物图片定位 */
+.hero-image {
+  position: absolute;
+  bottom: 0; right: 5%;
+  width: 500px;
+  z-index: 1;
+}
+.hero-image img { width: 100%; display: block; }
+
+/* ================= 4. 能力卡片网格 ================= */
+.section-container { padding: 6rem 4rem; max-width: 1400px; margin: 0 auto; position: relative;}
+
+.section-tag { color: var(--accent); font-size: 0.8rem; letter-spacing: 2px; font-weight: 600; margin-bottom: 1rem;}
+.section-title { font-size: 2.5rem; margin-bottom: 1rem; }
+.section-desc { color: var(--text-sub); max-width: 600px; margin-bottom: 3rem; }
+
+.focus-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4列网格 */
+  gap: 1px; /* 利用背景色形成边框线 */
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+.focus-card {
+  position: relative;
+  background: rgba(20, 20, 20, 0.3); /* 透明度调低，让透光更好 */
+  backdrop-filter: blur(16px);       /* 毛玻璃模糊，让透过的光变柔和 */
+  -webkit-backdrop-filter: blur(16px); /* 兼容 Safari */
+  border: 1px solid rgba(255, 255, 255, 0.08); /* 保留边框线 */
+  padding: 2rem;
+  transition: all 0.3s ease;
+  z-index: 2; /* 保证在光晕和尘埃之上 */
+}
+
+/* 鼠标悬停时边框微微提亮 */
+.focus-card:hover {
+  background: rgba(20, 20, 20, 0.5);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.focus-card:hover { background: var(--bg-card); }
+.focus-card .num { color: var(--accent); font-size: 0.8rem; font-weight: 600; display: block; margin-bottom: 1rem;}
+.focus-card h4 { font-size: 1.2rem; margin-bottom: 0.8rem; font-weight: 500;}
+.focus-card p { color: var(--text-sub); font-size: 0.9rem; }
+
+/* ================= 5. 经历时间线 ================= */
+.bg-text {
+  font-size: 8rem; 
+  color: rgba(255,255,255,0.03); /* 极淡的背景大字 */
+  position: absolute; 
+  top: 0; left: 0; 
+  z-index: -1;
+  font-weight: 800; 
+  letter-spacing: 5px; 
+  pointer-events: none;
+}
+
+.timeline-item {
+  display: flex; 
+  gap: 4rem; 
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.timeline-item .time { width: 150px; color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+.timeline-item .content h3 { font-size: 1.5rem; font-weight: 500; margin-bottom: 0.5rem;}
+.timeline-item .content p { color: var(--text-sub); }
+
+/* ================= 6. 手机端适配 ================= */
+@media (max-width: 900px) {
+  .navbar { padding: 1rem 1.5rem; }
+  .nav-links { display: none; } /* 手机端隐藏导航，以后可以加汉堡菜单 */
+  .hero-section { padding: 6rem 1.5rem 2rem; flex-direction: column; text-align: center;}
+  .hero-title { font-size: 2.5rem; }
+  .hero-image { position: static; width: 100%; margin-top: 2rem; }
+  .stats-grid { flex-direction: column; gap: 2rem; }
+  .focus-grid { grid-template-columns: 1fr; }
+  .timeline-item { flex-direction: column; gap: 0.5rem; }
+  .bg-text { font-size: 3rem; }
+  .section-container { padding: 4rem 1.5rem; }
+}
+/* ====== 融合版：按钮与泛光一体化 ====== */
+.contact-btn {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03); /* 极淡的底色，融入背景 */
+  border: 1px solid rgba(255,255,255,0.1); /* 几乎看不见的淡灰色边框 */
+  color: #fff;
+  padding: 0.6rem 1.5rem;
+  border-radius: 999px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* 鼠标悬停时：边框微微泛蓝，同时带一点点外发光 */
+.contact-btn:hover {
+  border-color: rgba(90, 169, 230, 0.5); /* 半透明的科技蓝边框 */
+  box-shadow: 0 0 20px rgba(90, 169, 230, 0.15); /* 外部柔和的光晕 */
+}
+
+/* 核心泛光：跟随鼠标的白色/淡蓝色光晕 */
+.contact-btn::before {
+  content: '';
+  position: absolute;
+  background: radial-gradient(
+    120px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(90, 169, 230, 0.25), /* 把这里从纯白改成了淡蓝色，和边框颜色呼应 */
+    transparent 60%
+  );
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 1;
+}
+.contact-btn:hover::before {
+  opacity: 1;
+}
+
+/* ====== 滚动淡入效果 ====== */
+.fade-in { 
+  opacity: 0; 
+  transform: translateY(40px); /* 距离拉大，看得更明显 */
+  transition: opacity 0.8s ease, transform 0.8s ease; 
+}
+.fade-in.show { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
+/* ================= 1. 深空背景光晕（自主运动） ================= */
+.bg-glow {
+  position: fixed; 
+  inset: 0; 
+  z-index: 0; 
+  pointer-events: none;
+  /* 用两个超大径向渐变模拟两团星云 */
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(90, 169, 230, 0.15), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.1), transparent 50%);
+  animation: floatNebula 25s infinite alternate ease-in-out;
+}
+
+/* 让星云缓慢漂移 */
+@keyframes floatNebula {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.1) translate(-3%, 4%); }
+  100% { transform: scale(1.05) translate(5%, -2%); }
+}
+
+/* ================= 2. 太空尘埃（微小颗粒） ================= */
+.bg-dust {
+  position: fixed; 
+  inset: 0; 
+  z-index: 1; 
+  pointer-events: none;
+  /* 利用多重径向渐变叠加，模拟散落的尘埃颗粒 */
+  background-image: 
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(2px 2px at 40% 70%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1.5px 1.5px at 90% 80%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 30% 90%, rgba(90, 169, 230, 0.7), transparent),
+    radial-gradient(2px 2px at 80% 10%, rgba(255,255,255,0.3), transparent);
+  background-size: 300px 300px, 400px 400px, 250px 250px, 350px 350px, 500px 500px, 450px 450px;
+  animation: driftDust 40s linear infinite;
+  opacity: 0.6;
+}
+
+/* 尘埃缓慢漂浮 */
+@keyframes driftDust {
+  0% { background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0; }
+  100% { background-position: -300px 300px, -400px 400px, -250px 250px, -350px 350px, -500px 500px, -450px 450px; }
+}
+/* ================= 高级感统计分隔线 ================= */
+
+/* 1. 先给每个统计项开启相对定位，作为基准 */
+.stat-item {
+  position: relative;
+}
+
+/* 2. 为除最后一个之外的统计项添加右侧分隔线 */
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -2rem;        /* 4rem 的 gap，右边留 2rem 正好居中 */
+  top: 5%;            /* 上下各留 20% 的空白 */
+  height: 90%;         /* 线条高度占 60% */
+  width: 1px;          /* 极细的 1px */
+  
+  /* 核心：科技蓝渐变，两端透明，中间发光 */
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(90, 169, 230, 0.6), /* 亮蓝色 */
+    transparent
+  );
+  
+  /* 可选：给线条加一个微弱的发光效果 */
+  box-shadow: 0 0 8px rgba(90, 169, 230, 0.3);
+}
+/* ================= 数据网格底部的水平发光条 ================= */
+
+.stats-grid {
+  position: relative; /* 开启相对定位，作为线的基准 */
+}
+
+/* 在数据网格底部画一条水平渐变线 */
+.stats-grid::after {
+  content: '';
+  position: absolute;
+  bottom: -3rem;      /* 距离数据网格底部 3rem，留出呼吸感 */
+  left: 0;
+  width: 100%;        /* 宽度撑满整个容器 */
+  height: 1px;        /* 纤细的 1px */
+  
+  /* 水平方向的渐变：从左到右，两端透明，中间发光 */
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(90, 169, 230, 0.6), /* 亮蓝色 */
+    transparent
+  );
+  
+  /* 给线条加微弱的发光效果 */
+  box-shadow: 0 0 8px rgba(90, 169, 230, 0.3);
+}
+/* ================= 能力卡片链接与详情样式 ================= */
+
+/* ====== 1. 卡片基础样式 ====== */
+.focus-card {
+  position: relative;         /* 必须加：为了定位光晕 */
+  overflow: hidden;           /* 必须加：让光晕不跑出卡片边缘 */
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  
+  background: rgba(20, 20, 20, 0.3); 
+  backdrop-filter: blur(16px);       
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08); 
+  padding: 2rem;
+  transition: all 0.3s ease;
+  z-index: 2; 
+}
+
+/* ====== 2. 鼠标悬停时边框提亮 ====== */
+.focus-card:hover {
+  background: rgba(20, 20, 20, 0.5);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ====== 3. 核心：跟随鼠标的内部泛光 ====== */
+.focus-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(90, 169, 230, 0.15), /* 淡蓝色泛光，你可以把0.15调大一点，比如0.25 */
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0; /* 光晕在底层 */
+}
+
+.focus-card:hover::before {
+  opacity: 1; /* 鼠标移入时显示泛光 */
+}
+
+/* ====== 4. 确保卡片里的文字在光晕之上 ====== */
+.focus-card h4, 
+.focus-card p, 
+.focus-card .num {
+  position: relative;
+  z-index: 1; /* 文字在顶层 */
+}
+
+/* 详情列表整体 */
+.detail-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* 每一条详情 */
+.detail-item {
+  background: rgba(20, 20, 20, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 2rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  scroll-margin-top: 100px; /* 重点：跳转时顶部留出导航栏的高度，防止被遮挡 */
+  transition: border-color 0.3s;
+}
+
+.detail-item:hover {
+  border-color: rgba(90, 169, 230, 0.4);
+}
+
+/* 详情头部 */
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.detail-num {
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.detail-header h3 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* 详情正文 */
+.detail-body p {
+  color: var(--text-sub);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* 移动端适配 */
+@media (max-width: 900px) {
+  .detail-header {
+    gap: 1rem;
+  }
+  .detail-header h3 {
+    font-size: 1.2rem;
+  }
+  .detail-item {
+    padding: 1.5rem;
+    scroll-margin-top: 80px;
+  }
+}
